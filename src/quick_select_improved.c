@@ -14,24 +14,27 @@ int quick_select(int A[], int n, int k){
 
 // 先頭の要素をピボットとする
     pivot = A[0];
-    for(i = l = u = 1; i <= n-u; i++){
+    for(i = l = 1; i < n; i++){
         if(A[i] < pivot){
             int z = A[l];
             A[l] = A[i];
             A[i] = z;
             l++;
         }
-        if(A[i] > pivot){
+    }
+    for(i = u = 1; i < n; i++){
+        if(A[n-i] > pivot){
             int z = A[n-u];
-            A[n-u] = A[i];
-            A[i] = z;
+            A[n-u] = A[n-i];
+            A[n-i] = z;
             u++;
         }
     }
-    
-    if((l <= k+1)&&(k+1 <= n-u)) return pivot;
-    else if(k+1 < l) return quick_select(A+1, l-1, k);
-    else if(n-u < k+1) return quick_select(A+(n-u+1), u-1, k-(n-u+1));
+    //ここから
+    if((l-1 <= k+1)&&(k+1 <= n-u+1)) return pivot;
+    else if(k+1 < l-1) return quick_select(A+1, l-1, k);
+    else if(n-u+1 < k+1) return quick_select(A+(n-u+1), u-1, k-(n-u+1));
+    //ここまで考え直し6/27
 }
 
 int main(){
