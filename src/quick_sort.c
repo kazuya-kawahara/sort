@@ -14,6 +14,7 @@ void quick_sort(int A[], int n){
     }
     else{
         int i, j, pivot;
+        
         pivot = A[0];  //先頭要素をピボットとする
         for(i = j = 1; i < n; i++){
             if(A[i] <= pivot){
@@ -23,6 +24,7 @@ void quick_sort(int A[], int n){
                 j++;
             }
         }
+        
         int z = A[j-1];
         A[j-1] = A[0];
         A[0] = z;  //ピボットをピボット以下を寄せ集めた配列の最後尾に移動する
@@ -30,7 +32,6 @@ void quick_sort(int A[], int n){
         quick_sort(A, j-1);  //ピボット以下を寄せ集めた配列の最後尾(j-1番目)以前の配列(要素数j-2+1)に同様の操作を行う
         quick_sort(A+j, n-j);  //残りについても同様
     }
-    
 }
 
 int main(){

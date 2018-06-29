@@ -22,7 +22,7 @@ int quick_select(int A[], int n, int k){
             l++;
         }
     }
-    for(i = u = 1; i < n; i++){
+    for(i = u = 1; i <= n-l; i++){
         if(A[n-i] > pivot){
             int z = A[n-u];
             A[n-u] = A[n-i];
@@ -30,11 +30,10 @@ int quick_select(int A[], int n, int k){
             u++;
         }
     }
-    //ここから
-    if((l-1 <= k+1)&&(k+1 <= n-u+1)) return pivot;
-    else if(k+1 < l-1) return quick_select(A+1, l-1, k);
-    else if(n-u+1 < k+1) return quick_select(A+(n-u+1), u-1, k-(n-u+1));
-    //ここまで考え直し6/27
+    
+    if((l <= k+1)&&(k+1 <= n-u+1)) return pivot;
+    else if(k+1 < l) return quick_select(A+1, l-1, k);
+    else return quick_select(A+(n-u+1), u-1, k-(n-u+1));
 }
 
 int main(){
